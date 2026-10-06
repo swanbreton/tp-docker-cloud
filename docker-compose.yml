@@ -1,0 +1,44 @@
+services:
+  backend:
+    build: ./back
+    container_name: cloud_backend
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+    stop_grace_period: 10s
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build: ./front
+    container_name: cloud_frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+    stop_grace_period: 10s
+
+  game_server:
+    build: ./game-server
+    container_name: cloud_gameserver
+    ports:
+      - "9000:9000"
+    depends_on:
+      - backend
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+    stop_grace_period: 15s
