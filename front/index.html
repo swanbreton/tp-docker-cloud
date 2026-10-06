@@ -2,14 +2,57 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Cloud Custom</title>
+  <title>Cloud Custom — Monster Battle</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f4f4f9; }
-    h1 { color: #2c3e50; }
+    body { font-family: sans-serif; text-align: center; background: #1a1a2e; color: #fff; padding-top: 50px; }
+    .card { background: #16213e; display: inline-block; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 340px; }
+    h1 { color: #e94560; margin-bottom: 5px; }
+    .status { font-size: 0.85em; color: #4ecca3; margin-bottom: 20px; }
+    button { background: #e94560; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+    button:hover { background: #ff6b6b; transform: scale(1.05); }
+    #hp { font-size: 2.2em; margin: 15px 0; font-weight: bold; color: #f9ed69; }
+    #log { font-size: 0.9em; color: #a6a6a6; margin-top: 15px; min-height: 40px; }
   </style>
 </head>
 <body>
-  <h1>Cloud Custom - Front</h1>
-  <p>L'architecture Docker tourne correctement !</p>
+
+  <div class="card">
+    <h1>Cloud Combat</h1>
+    <div class="status" id="backend-status">Connexion au Backend...</div>
+
+    <div>PV du Monstre :</div>
+    <div id="hp">100 HP</div>
+
+    <button onclick="attackMonster()"> Attaquer !</button>
+
+    <div id="log">Clique pour attaquer via le Backend Flask.</div>
+  </div>
+
+  <script>
+    // Vérifier l'état de l'API au chargement
+    fetch('http://localhost:5000/api')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('backend-status').innerText = "Backend API : En ligne (" + data.status + ")";
+      })
+      .catch(() => {
+        document.getElementById('backend-status').innerText = "Backend API : Hors ligne";
+        document.getElementById('backend-status').style.color = "#e94560";
+      });
+
+    // Envoyer une attaque
+    async function attackMonster() {
+      try {
+        const res = await fetch('http://localhost:5000/api/attack', { method: 'POST' });
+        const data = await res.json();
+        
+        document.getElementById('hp').innerText = data.hp + " HP";
+        document.getElementById('log').innerText = data.message;
+      } catch (err) {
+        document.getElementById('log').innerText = "Erreur de communication avec le Backend.";
+      }
+    }
+  </script>
+
 </body>
 </html>
