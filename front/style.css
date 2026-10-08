@@ -1,0 +1,176 @@
+body {
+  font-family: 'Georgia', serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.game-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.card, .inventory-card {
+  background: #12121a;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #8b0000;
+  box-shadow: 0 4px 25px rgba(139, 0, 0, 0.4);
+}
+
+.card {
+  width: 440px;
+  text-align: left;
+}
+
+.inventory-card {
+  width: 270px;
+  text-align: left;
+}
+
+h1, h2 {
+  color: #d4af37;
+  text-align: center;
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #8b0000;
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: #d4af37;
+  font-size: 0.95em;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.stat-box {
+  background: #1a1a24;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+.weapon-slot {
+  background: #181824;
+  border: 1px dashed #d4af37;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+
+.skill-node {
+  background: #161622;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 6px 0;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.skill-node.available {
+  border-color: #d4af37;
+  background: #1e1e2d;
+}
+
+.skill-node.available:hover {
+  background: #8b0000;
+  border-color: #ff4500;
+}
+
+.skill-node.unlocked {
+  border-color: #2ed573;
+  background: #0f2d1e;
+  cursor: default;
+}
+
+.class-option, .item-option {
+  background: #161622;
+  border: 1px solid #d4af37;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 8px 0;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.class-option:hover, .item-option:hover {
+  background: #8b0000;
+  border-color: #ff4500;
+  transform: scale(1.02);
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.nav-btn {
+  background: #1c1c28;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.nav-btn:hover {
+  background: #8b0000;
+  color: #fff;
+}
+
+#action-zone {
+  background: #1a1a24;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+button.action-btn {
+  background: #8b0000;
+  color: #fff;
+  border: 1px solid #ff4500;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.action-btn.special-btn {
+  background: #3742fa;
+  border-color: #70a1ff;
+}
+
+button.action-btn.special-btn:hover {
+  background: #5352ed;
+}
+
+#log {
+  font-size: 0.9em;
+  color: #cccccc;
+  margin-top: 15px;
+  min-height: 40px;
+  background: #08080c;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 3px solid #d4af37;
+}

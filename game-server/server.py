@@ -2,7 +2,6 @@ import socket
 import signal
 import sys
 
-# Gestion propre du signal SIGTERM
 signal.signal(signal.SIGTERM, lambda *a: sys.exit(0))
 
 s = socket.socket()
