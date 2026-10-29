@@ -36,73 +36,85 @@ SKILL_TREES = {
         {"id": "emp_1", "name": "Discipline d'Altdorf", "desc": "+15 PV Max", "type": "hp_max", "val": 15},
         {"id": "emp_2", "name": "Armure de Plaque", "desc": "+3 Défense", "type": "def", "val": 3},
         {"id": "emp_3", "name": "Fente du Reikland", "desc": "+5 Dégâts Min/Max", "type": "dmg", "val": 5},
-        {"id": "emp_4", "name": "Tactique d'Infanterie", "desc": "+20 PM Max", "type": "mp_max", "val": 20},
-        {"id": "emp_5", "name": "Bannière de l'Empire", "desc": "+25 PV Max", "type": "hp_max", "val": 25},
+        {"id": "emp_4", "name": "Parade au Pavois", "desc": "+20% Parade & Riposte de 10 Dégâts", "type": "parry", "val": 10},
+        {"id": "emp_5", "name": "Repli Tactique Ordonné", "desc": "+25% Chance de Fuite & 0 Dégât", "type": "flee", "val": 0.25},
         {"id": "emp_6", "name": "Maîtrise d'Escrime", "desc": "+7 Dégâts Min/Max", "type": "dmg", "val": 7},
-        {"id": "emp_7", "name": "Garde d'Acier", "desc": "+4 Défense", "type": "def", "val": 4},
+        {"id": "emp_7", "name": "Pas de Côté Discipliné", "desc": "+15% Chance d'Esquive totale", "type": "dodge", "val": 0.15},
         {"id": "emp_8", "name": "Détermination du Reik", "desc": "+30 PM Max", "type": "mp_max", "val": 30},
-        {"id": "emp_9", "name": "Vétéran des Labyrinthes", "desc": "+35 PV Max", "type": "hp_max", "val": 35},
-        {"id": "emp_10", "name": "Frappe du Maréchal", "desc": "+12 Dégâts Min/Max", "type": "dmg", "val": 12}
+        {"id": "emp_9", "name": "Garde Inébranlable", "desc": "+25% Parade & Riposte de 15 Dégâts", "type": "parry", "val": 15},
+        {"id": "emp_10", "name": "Frappe du Maréchal", "desc": "+12 Dégâts Min/Max", "type": "dmg", "val": 12},
+        {"id": "emp_11", "name": "Esquive Vétéran", "desc": "+20% Chance d'Esquive totale", "type": "dodge", "val": 0.20},
+        {"id": "emp_12", "name": "Désengagement Stratégique", "desc": "+30% Chance de Fuite & 0 Or perdu", "type": "flee", "val": 0.30}
     ],
     "slayer": [
         {"id": "sla_1", "name": "Serment du Tueur", "desc": "+8 Dégâts Min/Max", "type": "dmg", "val": 8},
         {"id": "sla_2", "name": "Fureur Incorruptible", "desc": "+25 PV Max", "type": "hp_max", "val": 25},
-        {"id": "sla_3", "name": "Peau de Pierre", "desc": "+2 Défense", "type": "def", "val": 2},
+        {"id": "sla_3", "name": "Parade Hache-Croisée", "desc": "+20% Parade & Riposte de 14 Dégâts", "type": "parry", "val": 14},
         {"id": "sla_4", "name": "Rage Berserker", "desc": "+10 Dégâts Min/Max", "type": "dmg", "val": 10},
         {"id": "sla_5", "name": "Endurance des Montagnes", "desc": "+30 PV Max", "type": "hp_max", "val": 30},
-        {"id": "sla_6", "name": "Charge Inarrêtable", "desc": "+25 PM Max", "type": "mp_max", "val": 25},
+        {"id": "sla_6", "name": "Esquive Réflexe du Tueur", "desc": "+15% Chance d'Esquive réflexe", "type": "dodge", "val": 0.15},
         {"id": "sla_7", "name": "Haches Sanglantes", "desc": "+12 Dégâts Min/Max", "type": "dmg", "val": 12},
-        {"id": "sla_8", "name": "Mépris de la Mort", "desc": "+40 PV Max", "type": "hp_max", "val": 40},
-        {"id": "sla_9", "name": "Runes de Bataille", "desc": "+3 Défense", "type": "def", "val": 3},
-        {"id": "sla_10", "name": "Tueur de Démons", "desc": "+15 Dégâts Min/Max", "type": "dmg", "val": 15}
+        {"id": "sla_8", "name": "Ruée de Dégagement", "desc": "+25% Chance de Fuite sans dégâts", "type": "flee", "val": 0.25},
+        {"id": "sla_9", "name": "Riposte Féroce de Gromril", "desc": "+25% Parade & Riposte de 18 Dégâts", "type": "parry", "val": 18},
+        {"id": "sla_10", "name": "Tueur de Démons", "desc": "+15 Dégâts Min/Max", "type": "dmg", "val": 15},
+        {"id": "sla_11", "name": "Esquive Sauvage", "desc": "+20% Chance d'Esquive totale", "type": "dodge", "val": 0.20},
+        {"id": "sla_12", "name": "Désengagement Berserk", "desc": "+30% Chance de Fuite héroïque", "type": "flee", "val": 0.30}
     ],
     "sigmar": [
         {"id": "sig_1", "name": "Foi Inébranlable", "desc": "+4 Défense", "type": "def", "val": 4},
         {"id": "sig_2", "name": "Bénédiction Divine", "desc": "+30 PV Max", "type": "hp_max", "val": 30},
-        {"id": "sig_3", "name": "Marteau du Châtiment", "desc": "+4 Dégâts Min/Max", "type": "dmg", "val": 4},
+        {"id": "sig_3", "name": "Égide Sacrée de Sigmar", "desc": "+25% Parade & Châtiment de 12 Dégâts", "type": "parry", "val": 12},
         {"id": "sig_4", "name": "Zèle du Fanatique", "desc": "+35 PM Max", "type": "mp_max", "val": 35},
-        {"id": "sig_5", "name": "Aura de Purification", "desc": "+3 Défense", "type": "def", "val": 3},
+        {"id": "sig_5", "name": "Pas Saint & Grâce Divine", "desc": "+15% Chance d'Esquive bénie", "type": "dodge", "val": 0.15},
         {"id": "sig_6", "name": "Ferveur Sacrée", "desc": "+6 Dégâts Min/Max", "type": "dmg", "val": 6},
-        {"id": "sig_7", "name": "Prière de Soin", "desc": "+40 PV Max", "type": "hp_max", "val": 40},
+        {"id": "sig_7", "name": "Retraite Pénitente", "desc": "+30% Chance de Fuite & 0 Or perdu", "type": "flee", "val": 0.30},
         {"id": "sig_8", "name": "Comète à Deux Queues", "desc": "+40 PM Max", "type": "mp_max", "val": 40},
-        {"id": "sig_9", "name": "Armure de Foi", "desc": "+5 Défense", "type": "def", "val": 5},
-        {"id": "sig_10", "name": "Justice Divine", "desc": "+10 Dégâts Min/Max", "type": "dmg", "val": 10}
+        {"id": "sig_9", "name": "Parade Sanctifiée", "desc": "+30% Parade & Riposte de 16 Dégâts", "type": "parry", "val": 16},
+        {"id": "sig_10", "name": "Justice Divine", "desc": "+10 Dégâts Min/Max", "type": "dmg", "val": 10},
+        {"id": "sig_11", "name": "Esquive de Lumière", "desc": "+20% Chance d'Esquive sacrée", "type": "dodge", "val": 0.20},
+        {"id": "sig_12", "name": "Sanctuaire de Retraite", "desc": "+35% Chance de Fuite miraculeuse", "type": "flee", "val": 0.35}
     ],
     "elfe": [
         {"id": "elf_1", "name": "Œil d'Avelorn", "desc": "+6 Dégâts Min/Max", "type": "dmg", "val": 6},
         {"id": "elf_2", "name": "Grâce d'Ulthuan", "desc": "+30 PM Max", "type": "mp_max", "val": 30},
-        {"id": "elf_3", "name": "Esquive Céleste", "desc": "+2 Défense", "type": "def", "val": 2},
-        {"id": "elf_4", "name": "Tir Véloce", "desc": "+8 Dégâts Min/Max", "type": "dmg", "val": 8},
+        {"id": "elf_3", "name": "Danse des Brumes Aériennes", "desc": "+25% Chance d'Esquive acrobatique", "type": "dodge", "val": 0.25},
+        {"id": "elf_4", "name": "Parade du Maître des Épées", "desc": "+20% Parade & Riposte de 12 Dégâts", "type": "parry", "val": 12},
         {"id": "elf_5", "name": "Focus Arcanique", "desc": "+40 PM Max", "type": "mp_max", "val": 40},
-        {"id": "elf_6", "name": "Reflet d'Argent", "desc": "+20 PV Max", "type": "hp_max", "val": 20},
+        {"id": "elf_6", "name": "Évanescence d'Ulthuan", "desc": "+35% Chance de Fuite sans perte d'or", "type": "flee", "val": 0.35},
         {"id": "elf_7", "name": "Flèches Stellaires", "desc": "+10 Dégâts Min/Max", "type": "dmg", "val": 10},
-        {"id": "elf_8", "name": "Agilité Ultime", "desc": "+3 Défense", "type": "def", "val": 3},
-        {"id": "elf_9", "name": "Harmonie Naturelle", "desc": "+30 PV Max", "type": "hp_max", "val": 30},
-        {"id": "elf_10", "name": "Maître-Archer", "desc": "+14 Dégâts Min/Max", "type": "dmg", "val": 14}
+        {"id": "elf_8", "name": "Esquive Suprême d'Isha", "desc": "+25% Chance d'Esquive parfaite", "type": "dodge", "val": 0.25},
+        {"id": "elf_9", "name": "Riposte Stellaire", "desc": "+25% Parade & Riposte de 15 Dégâts", "type": "parry", "val": 15},
+        {"id": "elf_10", "name": "Maître-Archer", "desc": "+14 Dégâts Min/Max", "type": "dmg", "val": 14},
+        {"id": "elf_11", "name": "Passe d'Invisibilité", "desc": "+40% Chance de Fuite sans trace", "type": "flee", "val": 0.40},
+        {"id": "elf_12", "name": "Reflet d'Argent", "desc": "+25 PV Max", "type": "hp_max", "val": 25}
     ],
     "bright_wizard": [
         {"id": "wiz_1", "name": "Vents d'Aqshy", "desc": "+50 PM Max", "type": "mp_max", "val": 50},
         {"id": "wiz_2", "name": "Incinération Suprême", "desc": "+7 Dégâts Min/Max", "type": "dmg", "val": 7},
-        {"id": "wiz_3", "name": "Aura de Feu", "desc": "+20 PV Max", "type": "hp_max", "val": 20},
-        {"id": "wiz_4", "name": "Pyromancie Avancée", "desc": "+9 Dégâts Min/Max", "type": "dmg", "val": 9},
+        {"id": "wiz_3", "name": "Illusion de Cendres", "desc": "+20% Chance d'Esquive vaporeuse", "type": "dodge", "val": 0.20},
+        {"id": "wiz_4", "name": "Barrière Incandescente", "desc": "+20% Parade & Brûlure de riposte de 14 Dégâts", "type": "parry", "val": 14},
         {"id": "wiz_5", "name": "Bouclier de Magma", "desc": "+3 Défense", "type": "def", "val": 3},
-        {"id": "wiz_6", "name": "Surchauffe Arcanique", "desc": "+40 PM Max", "type": "mp_max", "val": 40},
+        {"id": "wiz_6", "name": "Téléportation Flamboyante", "desc": "+35% Chance de Fuite en nuage de feu", "type": "flee", "val": 0.35},
         {"id": "wiz_7", "name": "Cœur de Braise", "desc": "+30 PV Max", "type": "hp_max", "val": 30},
-        {"id": "wiz_8", "name": "Tempête de Flammes", "desc": "+12 Dégâts Min/Max", "type": "dmg", "val": 12},
-        {"id": "wiz_9", "name": "Pacte du Phénix", "desc": "+60 PM Max", "type": "mp_max", "val": 60},
-        {"id": "wiz_10", "name": "Cataclysme d'Aqshy", "desc": "+16 Dégâts Min/Max", "type": "dmg", "val": 16}
+        {"id": "wiz_8", "name": "Esquive de Flamme Vive", "desc": "+25% Chance d'Esquive incandescente", "type": "dodge", "val": 0.25},
+        {"id": "wiz_9", "name": "Parade Explosive d'Aqshy", "desc": "+25% Parade & Déflagration de riposte de 18 Dégâts", "type": "parry", "val": 18},
+        {"id": "wiz_10", "name": "Cataclysme d'Aqshy", "desc": "+16 Dégâts Min/Max", "type": "dmg", "val": 16},
+        {"id": "wiz_11", "name": "Fuite en Traînée de Feu", "desc": "+40% Chance de Fuite magique sans perte", "type": "flee", "val": 0.40},
+        {"id": "wiz_12", "name": "Pacte du Phénix", "desc": "+60 PM Max", "type": "mp_max", "val": 60}
     ],
     "khainite": [
         {"id": "kha_1", "name": "Lame Empoisonnée", "desc": "+7 Dégâts Min/Max", "type": "dmg", "val": 7},
-        {"id": "kha_2", "name": "Pas des Ombres", "desc": "+3 Défense", "type": "def", "val": 3},
-        {"id": "kha_3", "name": "Soif de Sang", "desc": "+20 PV Max", "type": "hp_max", "val": 20},
-        {"id": "kha_4", "name": "Vitesse Mortelle", "desc": "+25 PM Max", "type": "mp_max", "val": 25},
+        {"id": "kha_2", "name": "Esquive Fantomatique de Khaine", "desc": "+25% Chance d'Esquive des ombres", "type": "dodge", "val": 0.25},
+        {"id": "kha_3", "name": "Parade Empoisonnée & Riposte", "desc": "+25% Parade & Riposte toxique de 16 Dégâts", "type": "parry", "val": 16},
+        {"id": "kha_4", "name": "Disparition dans les Ombres", "desc": "+40% Chance de Fuite furtive garantie", "type": "flee", "val": 0.40},
         {"id": "kha_5", "name": "Poisons Subtils", "desc": "+8 Dégâts Min/Max", "type": "dmg", "val": 8},
-        {"id": "kha_6", "name": "Voile d'Ombre", "desc": "+2 Défense", "type": "def", "val": 2},
+        {"id": "kha_6", "name": "Pas de l'Ombre Insaisissable", "desc": "+20% Chance d'Esquive mortelle", "type": "dodge", "val": 0.20},
         {"id": "kha_7", "name": "Frappe Anonyme", "desc": "+11 Dégâts Min/Max", "type": "dmg", "val": 11},
-        {"id": "kha_8", "name": "Vampirisme de Khaine", "desc": "+25 PV Max", "type": "hp_max", "val": 25},
-        {"id": "kha_9", "name": "Rituels Obscurs", "desc": "+35 PM Max", "type": "mp_max", "val": 35},
-        {"id": "kha_10", "name": "Danse de la Mort", "desc": "+15 Dégâts Min/Max", "type": "dmg", "val": 15}
+        {"id": "kha_8", "name": "Riposte Foudroyante de Khaine", "desc": "+25% Parade & Assassinat de riposte de 20 Dégâts", "type": "parry", "val": 20},
+        {"id": "kha_9", "name": "Échappatoire de la Mante", "desc": "+35% Chance de Fuite sans bruit, 0 or et 0 PV", "type": "flee", "val": 0.35},
+        {"id": "kha_10", "name": "Danse de la Mort", "desc": "+15 Dégâts Min/Max", "type": "dmg", "val": 15},
+        {"id": "kha_11", "name": "Esquive Réflexe de l'Assassin", "desc": "+15% Chance d'Esquive réflexe", "type": "dodge", "val": 0.15},
+        {"id": "kha_12", "name": "Vampirisme de Khaine", "desc": "+25 PV Max", "type": "hp_max", "val": 25}
     ]
 }
 
@@ -182,6 +194,50 @@ WEAPONS_BY_TIER = {
     ]
 }
 
+ARMORS_BY_TIER = {
+    1: [
+        {"name": "Cotte de mailles de l'Empire", "def": 3, "tier": 1, "desc": "Protections en fer standard", "classes": ["empire"]},
+        {"name": "Cuir de Vétéran du Reik", "def": 2, "tier": 1, "desc": "Souple et renforcé aux épaules", "classes": ["empire"]},
+        {"name": "Tunique de Cuir Renforcé", "def": 2, "tier": 1, "desc": "Légère et adaptée au combat", "classes": ["slayer", "khainite"]},
+        {"name": "Peau de Sanglier Sauvage", "def": 3, "tier": 1, "desc": "Épaisse et brutale", "classes": ["slayer"]},
+        {"name": "Robe Bénie de Sigmar", "def": 4, "tier": 1, "desc": "Tissu sacralisé par la foi", "classes": ["sigmar"]},
+        {"name": "Soutane du Penitent", "def": 3, "tier": 1, "desc": "Renforcée par des plaques d'acier", "classes": ["sigmar"]},
+        {"name": "Manteau de Soie d'Ulthuan", "def": 2, "tier": 1, "desc": "Élégance et légèreté elfique", "classes": ["elfe"]},
+        {"name": "Cotte de Mailles d'Avelorn", "def": 3, "tier": 1, "desc": "Tressée par les artisans elfes", "classes": ["elfe"]},
+        {"name": "Robe de Cendres", "def": 1, "tier": 1, "desc": "Tissu chargé d'énergie arcanique", "classes": ["bright_wizard"]},
+        {"name": "Manteau de Flamme Mineure", "def": 2, "tier": 1, "desc": "Isole de la chaleur et des coups", "classes": ["bright_wizard"]},
+        {"name": "Tunique des Ombres d'Ulgu", "def": 2, "tier": 1, "desc": "Discrète et imperméable", "classes": ["khainite"]}
+    ],
+    2: [
+        {"name": "Harnois Complet du Reikland", "def": 7, "tier": 2, "desc": "Acier trempé d'Altdorf", "classes": ["empire"]},
+        {"name": "Armure du Garde Noir", "def": 8, "tier": 2, "desc": "Plaques lourdes et solides", "classes": ["empire"]},
+        {"name": "Peau de Troll Tannée", "def": 5, "tier": 2, "desc": "Résistance brute et cuir épais", "classes": ["slayer"]},
+        {"name": "Sangles Runiques de Karak", "def": 6, "tier": 2, "desc": "Gravées de protections naines", "classes": ["slayer"]},
+        {"name": "Armure de Plaque du Marteau", "def": 8, "tier": 2, "desc": "Forgée pour les Prêtres-Guerriers", "classes": ["sigmar"]},
+        {"name": "Cuirasse de Ferveur Sacrée", "def": 9, "tier": 2, "desc": "Bénie contre les attaques du Chaos", "classes": ["sigmar"]},
+        {"name": "Cotte d'Ithilmar Flamboyante", "def": 5, "tier": 2, "desc": "Métal elfique extrêmement léger", "classes": ["elfe"]},
+        {"name": "Armure des Patrouilleurs d'Avelorn", "def": 6, "tier": 2, "desc": "Camouflage et acier souple", "classes": ["elfe"]},
+        {"name": "Robe de Pyromancien", "def": 3, "tier": 2, "desc": "Barrière magique de chaleur", "classes": ["bright_wizard"]},
+        {"name": "Toge d'Incinération D'Aqshy", "def": 4, "tier": 2, "desc": "Tissée dans les braises magiques", "classes": ["bright_wizard"]},
+        {"name": "Cuirasse d'Ébonite Khainite", "def": 5, "tier": 2, "desc": "Protection sombre et silencieuse", "classes": ["khainite"]},
+        {"name": "Manteau du Tueur de l'Ombre", "def": 6, "tier": 2, "desc": "Dévie les lames ennemies", "classes": ["khainite"]}
+    ],
+    3: [
+        {"name": "Armure d'Orichalque du Reik", "def": 14, "tier": 3, "desc": "Protection légendaire des comtes", "classes": ["empire"]},
+        {"name": "Harnois Impérial de Karl Franz", "def": 16, "tier": 3, "desc": "La meilleure armure d'Altdorf", "classes": ["empire"]},
+        {"name": "Rune Majeure d'Invulnérabilité", "def": 10, "tier": 3, "desc": "Gravée directement sur la chair", "classes": ["slayer"]},
+        {"name": "Peau de Dragon Ancien", "def": 12, "tier": 3, "desc": "Écailles impénétrables", "classes": ["slayer"]},
+        {"name": "Plaque Céleste d'Azyr", "def": 15, "tier": 3, "desc": "Forgée sous les éclairs célestes", "classes": ["sigmar"]},
+        {"name": "Armure Divine du Grand Théogoniste", "def": 17, "tier": 3, "desc": "Halo de protection absolue", "classes": ["sigmar"]},
+        {"name": "Armure Stellaire d'Avelorn", "def": 11, "tier": 3, "desc": "Forgée en Ithilmar pur", "classes": ["elfe"]},
+        {"name": "Plaque Céleste des Hauts-Elfes", "def": 13, "tier": 3, "desc": "Bénie par les Dieux d'Ulthuan", "classes": ["elfe"]},
+        {"name": "Cape de Tempête d'Aqshy", "def": 8, "tier": 3, "desc": "Absorbe la magie et les dégâts", "classes": ["bright_wizard"]},
+        {"name": "Robe du Cataclysme Flamboyant", "def": 10, "tier": 3, "desc": "Entourée d'un bouclier de feu", "classes": ["bright_wizard"]},
+        {"name": "Voile de Mort de Har Ganeth", "def": 10, "tier": 3, "desc": "Baigné dans le sang de Khaine", "classes": ["khainite"]},
+        {"name": "Armure de Sang du Grand Assassin", "def": 12, "tier": 3, "desc": "Rend presque intouchable dans le noir", "classes": ["khainite"]}
+    ]
+}
+
 MONSTERS_POOL = {
     1: [
         {"name": "Guerrier Skaven", "hp": 25, "max_hp": 25, "atk_min": 5, "atk_max": 9, "xp": 25},
@@ -245,46 +301,10 @@ MONSTERS_POOL = {
     ]
 }
 
-ARMORS_BY_TIER = {
-    1: [
-        {"name": "Cotte de mailles de l'Empire", "def": 3, "tier": 1, "desc": "Protections en fer standard", "classes": ["empire"]},
-        {"name": "Cuir de Vétéran du Reik", "def": 2, "tier": 1, "desc": "Souple et renforcé aux épaules", "classes": ["empire"]},
-        {"name": "Tunique de Cuir Renforcé", "def": 2, "tier": 1, "desc": "Légère et adaptée au combat", "classes": ["slayer", "khainite"]},
-        {"name": "Peau de Sanglier Sauvage", "def": 3, "tier": 1, "desc": "Épaisse et brutale", "classes": ["slayer"]},
-        {"name": "Robe Bénie de Sigmar", "def": 4, "tier": 1, "desc": "Tissu sacralisé par la foi", "classes": ["sigmar"]},
-        {"name": "Soutane du Penitent", "def": 3, "tier": 1, "desc": "Renforcée par des plaques d'acier", "classes": ["sigmar"]},
-        {"name": "Manteau de Soie d'Ulthuan", "def": 2, "tier": 1, "desc": "Élégance et légèreté elfique", "classes": ["elfe"]},
-        {"name": "Cotte de Mailles d'Avelorn", "def": 3, "tier": 1, "desc": "Tressée par les artisans elfes", "classes": ["elfe"]},
-        {"name": "Robe de Cendres", "def": 1, "tier": 1, "desc": "Tissu chargé d'énergie arcanique", "classes": ["bright_wizard"]},
-        {"name": "Manteau de Flamme Mineure", "def": 2, "tier": 1, "desc": "Isole de la chaleur et des coups", "classes": ["bright_wizard"]},
-        {"name": "Tunique des Ombres d'Ulgu", "def": 2, "tier": 1, "desc": "Discrète et imperméable", "classes": ["khainite"]}
-    ],
-    2: [
-        {"name": "Harnois Complet du Reikland", "def": 7, "tier": 2, "desc": "Acier trempé d'Altdorf", "classes": ["empire"]},
-        {"name": "Armure du Garde Noir", "def": 8, "tier": 2, "desc": "Plaques lourdes et solides", "classes": ["empire"]},
-        {"name": "Peau de Troll Tannée", "def": 5, "tier": 2, "desc": "Résistance brute et cuir épais", "classes": ["slayer"]},
-        {"name": "Sangles Runiques de Karak", "def": 6, "tier": 2, "desc": "Gravées de protections naines", "classes": ["slayer"]},
-        {"name": "Armure de Plaque du Marteau", "def": 8, "tier": 2, "desc": "Forgée pour les Prêtres-Guerriers", "classes": ["sigmar"]},
-        {"name": "Cuirasse de Ferveur Sacrée", "def": 9, "tier": 2, "desc": "Bénie contre les attaques du Chaos", "classes": ["sigmar"]},
-        {"name": "Cotte d'Ithilmar Flamboyante", "def": 5, "tier": 2, "desc": "Métal elfique extrêmement léger", "classes": ["elfe"]},
-        {"name": "Armure des Patrouilleurs d'Avelorn", "def": 6, "tier": 2, "desc": "Camouflage et acier souple", "classes": ["elfe"]},
-        {"name": "Robe de Pyromancien", "def": 3, "tier": 2, "desc": "Barrière magique de chaleur", "classes": ["bright_wizard"]},
-        {"name": "Toge d'Incinération D'Aqshy", "def": 4, "tier": 2, "desc": "Tissée dans les braises magiques", "classes": ["bright_wizard"]},
-        {"name": "Cuirasse d'Ébonite Khainite", "def": 5, "tier": 2, "desc": "Protection sombre et silencieuse", "classes": ["khainite"]},
-        {"name": "Manteau du Tueur de l'Ombre", "def": 6, "tier": 2, "desc": "Dévie les lames ennemies", "classes": ["khainite"]}
-    ],
-    3: [
-        {"name": "Armure d'Orichalque du Reik", "def": 14, "tier": 3, "desc": "Protection légendaire des comtes", "classes": ["empire"]},
-        {"name": "Harnois Impérial de Karl Franz", "def": 16, "tier": 3, "desc": "La meilleure armure d'Altdorf", "classes": ["empire"]},
-        {"name": "Rune Majeure d'Invulnérabilité", "def": 10, "tier": 3, "desc": "Gravée directement sur la chair", "classes": ["slayer"]},
-        {"name": "Peau de Dragon Ancien", "def": 12, "tier": 3, "desc": "Écailles impénétrables", "classes": ["slayer"]},
-        {"name": "Plaque Céleste d'Azyr", "def": 15, "tier": 3, "desc": "Forgée sous les éclairs célestes", "classes": ["sigmar"]},
-        {"name": "Armure Divine du Grand Théogoniste", "def": 17, "tier": 3, "desc": "Halo de protection absolue", "classes": ["sigmar"]},
-        {"name": "Armure Stellaire d'Avelorn", "def": 11, "tier": 3, "desc": "Forfée en Ithilmar pur", "classes": ["elfe"]},
-        {"name": "Plaque Céleste des Hauts-Elfes", "def": 13, "tier": 3, "desc": "Bénie par les Dieux d'Ulthuan", "classes": ["elfe"]},
-        {"name": "Cape de Tempête d'Aqshy", "def": 8, "tier": 3, "desc": "Absorbe la magie et les dégâts", "classes": ["bright_wizard"]},
-        {"name": "Robe du Cataclysme Flamboyant", "def": 10, "tier": 3, "desc": "Entourée d'un bouclier de feu", "classes": ["bright_wizard"]},
-        {"name": "Voile de Mort de Har Ganeth", "def": 10, "tier": 3, "desc": "Baigné dans le sang de Khaine", "classes": ["khainite"]},
-        {"name": "Armure de Sang du Grand Assassin", "def": 12, "tier": 3, "desc": "Rend presque intouchable dans le noir", "classes": ["khainite"]}
-    ]
-}
+BOSSES_POOL = [
+    {"name": "👑 Buveur de Sang de Khorne (Boss)", "hp": 350, "max_hp": 350, "atk_min": 25, "atk_max": 45, "xp": 300, "gold_reward": 150},
+    {"name": "👑 Grand Immonde de Nurgle (Boss)", "hp": 450, "max_hp": 450, "atk_min": 18, "atk_max": 35, "xp": 350, "gold_reward": 180},
+    {"name": "👑 Duc du Changement de Tzeentch (Boss)", "hp": 300, "max_hp": 300, "atk_min": 30, "atk_max": 50, "xp": 320, "gold_reward": 160},
+    {"name": "👑 Gardien des Secrets de Slaanesh (Boss)", "hp": 320, "max_hp": 320, "atk_min": 28, "atk_max": 48, "xp": 330, "gold_reward": 170},
+    {"name": "👑 Prophète Gris Skaven (Boss)", "hp": 280, "max_hp": 280, "atk_min": 22, "atk_max": 42, "xp": 280, "gold_reward": 140}
+]

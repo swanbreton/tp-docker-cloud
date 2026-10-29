@@ -7,50 +7,72 @@
 </head>
 <body>
 
+  <!-- BARRE DE NAVIGATION EN TÊTE -->
+  <header class="app-header">
+    <div class="logo">⚔️ Labyrinthe du Chaos</div>
+    <div class="header-status">
+      <span id="status-backend">🔄 API</span> | 
+      <span id="status-gameserver">🛡️ GameServer</span>
+    </div>
+    <div class="header-actions">
+      <div id="user-badge" style="display: none; color: #2ed573; font-weight: bold; margin-right: 10px;"></div>
+      <button id="btn-auth-modal" class="action-btn" onclick="openAuthModal()" style="background: #2980b9;">🔑 Connexion</button>
+      <button id="btn-profile" class="action-btn" onclick="openProfileModal()" style="display: none; background: #8e44ad;">👤 Mon Profil</button>
+    </div>
+  </header>
+
   <div class="game-layout">
-    <!-- Zone de jeu principale -->
+    <!-- ZONE PRINCIPALE DE JEU -->
     <div class="card">
-      <h1>⚔️ Labyrinthe du Chaos</h1>
       
       <!-- 1. Sélection du héros -->
       <div id="class-select-zone">
-        <h3 style="color: #d4af37; text-align: center;">Choisis ton Héros :</h3>
-        
-        <div class="class-option" onclick="selectClass('empire')">
-          <strong style="color: #d4af37;">⚔️ Garde Franc (Empire)</strong><br>
-          <small>Équilibré — PV: 110 | Def: 3 | Épée Longue (8-16)</small>
-        </div>
-
-        <div class="class-option" onclick="selectClass('slayer')">
-          <strong style="color: #ff4757;">🪓 Tueur Nain (Slayer)</strong><br>
-          <small>Offensif — PV: 90 | Def: 0 | Haches du Tueur (14-24)</small>
-        </div>
-
-        <div class="class-option" onclick="selectClass('sigmar')">
-          <strong style="color: #2ed573;">🔨 Prêtre-Guerrier de Sigmar</strong><br>
-          <small>Résistant — PV: 130 | Def: 5 | Marteau Béni (6-14)</small>
-        </div>
-
-        <div class="class-option" onclick="selectClass('elfe')">
-          <strong style="color: #70a1ff;">🏹 Maître-Aigle Haut-Elfe</strong><br>
-          <small>Distance — PV: 85 | Def: 1 | Arc d'Avelorn (10-22)</small>
-        </div>
-
-        <div class="class-option" onclick="selectClass('bright_wizard')">
-          <strong style="color: #ffa502;">🔮 Sorcier Flamboyant</strong><br>
-          <small>Magie Burst — PV: 80 | Def: 0 | Bâton d'Ambre (5-28)</small>
-        </div>
-
-        <div class="class-option" onclick="selectClass('khainite')">
-          <strong style="color: #a4b0be;">🗡️ Assassin Khainite</strong><br>
-          <small>Critique — PV: 95 | Def: 2 | Dagues de l'Ombre (11-19)</small>
+        <h3 style="color: #d4af37; text-align: center; margin-top: 0;">Choisis ton Héros :</h3>
+        <div class="class-grid">
+          <div class="class-option" onclick="selectClass('empire')">
+            <strong style="color: #d4af37;">⚔️ Garde Franc de l'Empire</strong><br>
+            <small>PV: 110 | Def: 3 | Épée longue (8-16)</small>
+          </div>
+          <div class="class-option" onclick="selectClass('slayer')">
+            <strong style="color: #ff4757;">🪓 Tueur Nain (Slayer)</strong><br>
+            <small>PV: 90 | Def: 0 | Double Hache (14-24)</small>
+          </div>
+          <div class="class-option" onclick="selectClass('sigmar')">
+            <strong style="color: #2ed573;">🔨 Prêtre-Guerrier</strong><br>
+            <small>PV: 130 | Def: 5 | Marteau (6-14)</small>
+          </div>
+          <div class="class-option" onclick="selectClass('elfe')">
+            <strong style="color: #70a1ff;">🏹 Haut-Elfe</strong><br>
+            <small>PV: 85 | Def: 1 | Arc (10-22)</small>
+          </div>
+          <div class="class-option" onclick="selectClass('bright_wizard')">
+            <strong style="color: #ffa502;">🔮 Sorcier Flamboyant</strong><br>
+            <small>PV: 80 | Def: 0 | Bâton (5-28)</small>
+          </div>
+          <div class="class-option" onclick="selectClass('khainite')">
+            <strong style="color: #a4b0be;">🗡️ Assassin Khainite</strong><br>
+            <small>PV: 95 | Def: 2 | Dagues (11-19)</small>
+          </div>
         </div>
       </div>
 
-      <!-- 2. Zone Labyrinthe / Combat / Événements -->
+      <!-- 2. Zone Labyrinthe / Navigation / Action -->
       <div id="game-zone" style="display: none;">
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+          <button class="action-btn" style="background: #7f8c8d; font-size: 0.8em; padding: 6px 12px;" onclick="returnToMainMenu()">🏠 Menu Principal</button>
+        </div>
+
+        <!-- NAVIGATION & CARTE -->
         <div id="nav-zone">
-          <label><strong>Choisis ta voie dans les ruines :</strong></label>
+          <div class="map-container">
+            <h4 style="color: #d4af37; margin: 0 0 10px 0;">🗺️ Mini-carte du Labyrinthe</h4>
+            <div id="map-grid"></div>
+            <div style="font-size: 0.75em; color: #aaa; margin-top: 8px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+              <span>🔴 Joueur</span> | <span>🟩 Vide</span> | <span>⚔️ Combat</span> | <span>🎁 Coffre</span> | <span>🛒 Marchand</span>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-bottom: 8px;"><strong>Choisis ta voie dans les ruines :</strong></div>
           <div class="nav-grid">
             <div></div>
             <div class="nav-btn" onclick="move('Nord')">⬆️ Nord</div>
@@ -64,6 +86,7 @@
           </div>
         </div>
 
+        <!-- ACTION (Combat, Coffre, Marchand, Autel) -->
         <div id="action-zone" style="display: none;">
           <!-- Combat -->
           <div id="monster-info" style="display: none;">
@@ -73,7 +96,7 @@
               <button class="action-btn" onclick="attack()">⚔️ Attaquer</button>
               <button class="action-btn" style="background: #2980b9;" onclick="defend()">🛡️ Parer / Esquiver</button>
               <button class="action-btn special-btn" onclick="specialAttack()">✨ Coup Spécial (30 PM)</button>
-              <button class="action-btn" style="background: #c0392b;" onclick="flee()">🏃 Fuir (45% | Risqué)</button>
+              <button id="flee-btn" class="action-btn" style="background: #c0392b;" onclick="flee()">🏃 Fuir</button>
             </div>
           </div>
 
@@ -83,17 +106,17 @@
             <div id="chest-options"></div>
           </div>
 
-          <!-- Marchand PNJ -->
+          <!-- Marchand -->
           <div id="merchant-info" style="display: none;">
             <h3 style="color: #f1c40f; margin-top: 0;">🛒 Marchand Ambulant</h3>
             <div id="merchant-options"></div>
             <button class="nav-btn" onclick="leaveMerchant()" style="width: 100%; margin-top: 10px;">⬅️ Reprendre sa route</button>
           </div>
 
-          <!-- Autel de Sacrifice -->
+          <!-- Autel -->
           <div id="altar-info" style="display: none;">
             <h3 style="color: #9b59b6; margin-top: 0;">⛩️ Autel de Sang</h3>
-            <p>Souhaites-tu sacrifier 20 PV contre une puissance ténébreuse (+3/+5 Dégâts permanents) ?</p>
+            <p>Sacrifier 20 PV contre +3/+5 Dégâts permanents ?</p>
             <div style="display: flex; gap: 10px; justify-content: center;">
               <button class="action-btn" onclick="interactAltar('sacrifice')">🩸 Sacrifier 20 PV</button>
               <button class="nav-btn" onclick="interactAltar('leave')">🚶 Partir</button>
@@ -102,26 +125,25 @@
         </div>
       </div>
 
-      <!-- 3. Zone Choix de Compétence -->
+      <!-- 3. Arbre de compétences -->
       <div id="tree-zone" style="display: none;">
-        <h2 style="border: none;">🌟 Choisis 1 Compétence</h2>
-        <div id="draft-container" style="display: flex; flex-direction: column; gap: 10px; margin: 15px 0;"></div>
-        <button class="nav-btn" onclick="closeSkillTree()" style="width: 100%; margin-top: 10px;">⬅️ Passer / Retour</button>
+        <h2>🌟 Choisis 1 Compétence</h2>
+        <div id="draft-container"></div>
+        <button class="nav-btn" onclick="closeSkillTree()" style="width: 100%; margin-top: 10px;">⬅️ Retour</button>
       </div>
 
       <div id="log">Sélectionne une classe pour entrer dans le labyrinthe.</div>
     </div>
 
-    <!-- Panneau latéral -->
+    <!-- PANNEAU LATÉRAL : STATISTIQUES & ÉQUIPEMENT DU HÉROS -->
     <div class="inventory-card">
       <h2>📜 Statistiques</h2>
-      
       <div class="stat-box">
         <div><strong>Héros :</strong> <span id="inv-class" style="color: #d4af37;">-</span></div>
         <div><strong>Niveau :</strong> <span id="inv-level" style="color: #ffaa00;">1</span></div>
         <div><strong>XP :</strong> <span id="inv-xp" style="color: #2ed573;">0 / 50</span></div>
-        <div><strong>Or (Gold) :</strong> <span id="inv-gold" style="color: #f1c40f; font-weight: bold;">30</span> 🪙</div>
-        <div><strong>Points Dispo :</strong> <span id="inv-pts" style="color: #ff4757; font-weight: bold;">0</span></div>
+        <div><strong>Or :</strong> <span id="inv-gold" style="color: #f1c40f;">30</span> 🪙</div>
+        <div><strong>Points Dispo :</strong> <span id="inv-pts" style="color: #ff4757;">0</span></div>
         <hr style="border-color: #333; margin: 6px 0;">
         <div><strong>Santé :</strong> <span id="inv-hp" style="color: #2ed573;">-</span></div>
         <div><strong>Mana :</strong> <span id="inv-mp" style="color: #70a1ff;">-</span></div>
@@ -129,33 +151,55 @@
         <div><strong>Salles Cleared :</strong> <span id="inv-rooms">-</span></div>
       </div>
 
-      <!-- Bouton d'ouverture du tirage de compétence -->
-      <button class="nav-btn" onclick="openSkillTree()" style="width: 100%; margin-top: 15px;">🌟 Choisir une Compétence</button>
+      <button class="nav-btn" onclick="openSkillTree()" style="width: 100%; margin-top: 10px;">🌟 Choisir une Compétence</button>
 
-      <!-- Affichage des compétences acquises -->
-      <h3>✨ Compétences Acquises</h3>
-      <div id="inv-unlocked-skills">
-        <div style="font-size: 0.85em; color: #888;">Aucune compétence</div>
-      </div>
+      <h3>✨ Compétences</h3>
+      <div id="inv-unlocked-skills"><small style="color: #888;">Aucune</small></div>
 
       <h3>⚔️ Arme Équipée</h3>
       <div class="weapon-slot">
         <div id="inv-weapon-name" style="font-weight: bold; color: #ffa502;">Aucune</div>
-        <div id="inv-weapon-damage" style="font-size: 0.85em; color: #aaa; margin-top: 4px;">Dégâts : -</div>
-        <div id="inv-weapon-desc" style="font-size: 0.8em; color: #2ed573; margin-top: 2px;">-</div>
+        <div id="inv-weapon-damage" style="font-size: 0.85em; color: #aaa;">Dégâts : -</div>
       </div>
 
       <h3>🛡️ Armure Équipée</h3>
       <div class="weapon-slot">
         <div id="inv-armor-name" style="font-weight: bold; color: #70a1ff;">Aucune</div>
-        <div id="inv-armor-def" style="font-size: 0.85em; color: #aaa; margin-top: 4px;">Défense : -</div>
-        <div id="inv-armor-desc" style="font-size: 0.8em; color: #2ed573; margin-top: 2px;">-</div>
+        <div id="inv-armor-def" style="font-size: 0.85em; color: #aaa;">Défense : -</div>
       </div>
 
-      <h3>🎒 Sac à dos (Max 3)</h3>
-      <div id="inv-consumables-list">
-        <div style="font-size: 0.85em; color: #888;">Sac vide</div>
+      <h3>🎒 Sac à dos</h3>
+      <div id="inv-consumables-list"><small style="color: #888;">Vide</small></div>
+
+      <div style="display: flex; gap: 8px; margin-top: 15px;">
+        <button class="action-btn" onclick="saveCurrentGame()" style="flex: 1; font-size: 0.8em; background: #27ae60;">💾 Sauvegarder</button>
+        <button class="action-btn" onclick="loadSavedGame()" style="flex: 1; font-size: 0.8em; background: #2980b9;">📂 Charger</button>
       </div>
+    </div>
+  </div>
+
+  <!-- FENÊTRE MODALE : CONNEXION / INSCRIPTION -->
+  <div id="auth-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+      <h3 style="color: #d4af37; margin-top: 0; text-align: center;">🔐 Identification</h3>
+      <input type="text" id="auth-user" placeholder="Nom d'utilisateur" class="modal-input">
+      <input type="password" id="auth-pass" placeholder="Mot de passe" class="modal-input">
+      <div style="display: flex; gap: 10px; margin-top: 15px;">
+        <button class="action-btn" onclick="loginUser()" style="flex: 1; background: #27ae60;">🔑 Se Connecter</button>
+        <button class="action-btn" onclick="registerUser()" style="flex: 1; background: #2980b9;">📝 Créer un Compte</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FENÊTRE MODALE : PROFIL & CLASSEMENT -->
+  <div id="profile-modal" class="modal">
+    <div class="modal-content" style="max-width: 450px;">
+      <span class="close-btn" onclick="closeProfileModal()">&times;</span>
+      <h3 style="color: #d4af37; margin-top: 0;">👤 Profil Joueur</h3>
+      <div id="profile-info" style="margin-bottom: 20px;"></div>
+      <h4 style="color: #f1c40f; margin-bottom: 10px;">🏆 Classement Général (Top 10)</h4>
+      <div id="leaderboard-list"></div>
     </div>
   </div>
 

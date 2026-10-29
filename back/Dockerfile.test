@@ -1,0 +1,32 @@
+# ==============================================================================
+# Image CI - TESTS (tests unitaires du backend avec pytest)
+# Base : Alpine Linux nu. Mêmes dépendances que l'image backend + pytest,
+# le tout installé AU BUILD (le conteneur tourne sur un réseau sans Internet).
+# ==============================================================================
+FROM alpine:3.20
+
+LABEL maintainer="swan.breton75@gmail.com" \
+      description="Runner pytest pour l'API Flask"
+
+# Les données/logs des tests vont dans /tmp pour ne pas toucher aux volumes
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    DATA_DIR=/tmp/data \
+    LOG_DIR=/tmp/logs
+
+# - python3, py3-flask, py3-flask-cors : dépendances de l'application testée
+# - py3-pytest                          : framework de tests
+RUN apk add --no-cache python3 py3-flask py3-flask-cors py3-pytest
+
+RUN addgroup -S ci && adduser -S ci -G ci
+
+WORKDIR /app
+
+# Le code est copié dans l'image : chaque build teste une version figée du code
+COPY --chown=ci:ci game_data.py app.py test_app.py ./
+
+USER ci
+
+# ENTRYPOINT = l'outil, CMD = options par défaut (-v : détail de chaque test)
+ENTRYPOINT ["python3", "-m", "pytest"]
+CMD ["-v", "-p", "no:cacheprovider"]

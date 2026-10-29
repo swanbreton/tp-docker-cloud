@@ -1,46 +1,211 @@
+# ==============================================================================
+# Orchestration - Labyrinthe Warhammer Cloud
+# 3 services applicatifs (game-server -> backend -> frontend) + 2 services CI
+# (linter, test-runner). Toutes les images sont construites localement depuis
+# alpine:3.20 (aucune image applicative Docker Hub).
+# Tous les paramètres (ports, ressources) viennent du fichier unique .env,
+# avec une valeur par défaut ${VAR:-defaut} en repli.
+# ==============================================================================
+
 services:
-  backend:
-    build: ./back
-    container_name: cloud_backend
-    ports:
-      - "5000:5000"
+
+  # ----------------------------------------------------------------------------
+  # GAME SERVER : serveur TCP interne, démarre en premier
+  # ----------------------------------------------------------------------------
+  game-server:
+    build:
+      context: ./game-server
+      dockerfile: Dockerfile
+    image: warhammer/game-server:1.0
+    container_name: cloud_game_server
+    # expose (et non ports) : accessible uniquement depuis les autres conteneurs
+    expose:
+      - "${GAME_SERVER_PORT:-9000}"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=${GAME_SERVER_PORT:-9000}
+    networks:
+      - backend-net
+    # Quotas de ressources (limits = plafond, reservations = minimum garanti)
     deploy:
       resources:
         limits:
-          cpus: "0.50"
-          memory: 256M
+          cpus: "${GAME_SERVER_CPU_LIMIT:-0.25}"
+          memory: "${GAME_SERVER_MEM_LIMIT:-128M}"
+        reservations:
+          cpus: "${GAME_SERVER_CPU_RESERVE:-0.05}"
+          memory: "${GAME_SERVER_MEM_RESERVE:-32M}"
+    # Délai laissé après SIGTERM avant un SIGKILL forcé
+    stop_grace_period: 10s
+    # Sain quand le port TCP accepte une connexion
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import socket; socket.create_connection(('127.0.0.1', ${GAME_SERVER_PORT:-9000}), 2).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 3s
+    restart: always
+
+  # ----------------------------------------------------------------------------
+  # BACKEND : API Flask, attend que le game-server soit sain
+  # ----------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    image: warhammer/backend:1.0
+    container_name: cloud_backend
+    # Publié uniquement en local (127.0.0.1) pour le debug : le trafic normal
+    # passe par le reverse proxy Nginx
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-5000}:5000"
+    environment:
+      - PORT=5000
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+      - DEBUG=${DEBUG:-False}
+      - FLASK_ENV=${FLASK_ENV:-production}
+      - SECRET_KEY=${SECRET_KEY:?SECRET_KEY doit etre defini dans .env}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DATA_DIR=${DATA_DIR:-/app/data}
+      - LOG_DIR=${LOG_DIR:-/app/logs}
+      - GAME_SERVER_HOST=${GAME_SERVER_HOST:-game-server}
+      - GAME_SERVER_PORT=${GAME_SERVER_PORT:-9000}
+    # Volumes nommés : sauvegardes des joueurs et logs persistants
+    volumes:
+      - backend_data:/app/data
+      - backend_logs:/app/logs
+    # Pont entre les deux réseaux : joignable par Nginx, joint le game-server
+    networks:
+      - frontend-net
+      - backend-net
+    # Ordre de démarrage : le game-server doit être "healthy"
+    depends_on:
+      game-server:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "${BACKEND_CPU_LIMIT:-0.50}"
+          memory: "${BACKEND_MEM_LIMIT:-256M}"
+        reservations:
+          cpus: "${BACKEND_CPU_RESERVE:-0.10}"
+          memory: "${BACKEND_MEM_RESERVE:-64M}"
     stop_grace_period: 10s
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/api"]
       interval: 10s
       timeout: 5s
       retries: 3
+      start_period: 5s
+    restart: always
 
+  # ----------------------------------------------------------------------------
+  # FRONTEND : Nginx (statique + reverse proxy /api), attend le backend sain
+  # ----------------------------------------------------------------------------
   frontend:
-    build: ./front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    image: warhammer/frontend:1.0
     container_name: cloud_frontend
+    # Seul point d'entrée public de la stack
     ports:
-      - "8081:80"
+      - "${FRONTEND_PORT:-8080}:80"
+    volumes:
+      - frontend_logs:/var/log/nginx
+    networks:
+      - frontend-net
     depends_on:
       backend:
         condition: service_healthy
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: 128M
+          cpus: "${FRONTEND_CPU_LIMIT:-0.25}"
+          memory: "${FRONTEND_MEM_LIMIT:-128M}"
+        reservations:
+          cpus: "${FRONTEND_CPU_RESERVE:-0.05}"
+          memory: "${FRONTEND_MEM_RESERVE:-32M}"
+    # SIGQUIT (défini par STOPSIGNAL dans l'image) = arrêt propre de Nginx
     stop_grace_period: 10s
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 3s
+    restart: always
 
-  game_server:
-    build: ./game-server
-    container_name: cloud_gameserver
-    ports:
-      - "9000:9000"
-    depends_on:
-      - backend
+  # ----------------------------------------------------------------------------
+  # CI - LINTER : flake8 sur le code du backend, s'exécute puis s'arrête
+  # ----------------------------------------------------------------------------
+  linter:
+    build:
+      context: ./linter
+      dockerfile: Dockerfile
+    image: warhammer/ci-linter:1.0
+    container_name: cloud_ci_linter
+    # Code monté en lecture seule : le linter ne peut rien modifier
+    volumes:
+      - ./back:/code:ro
+    # Aucun réseau : flake8 est déjà dans l'image, rien à télécharger
+    network_mode: none
     deploy:
       resources:
         limits:
-          cpus: "1.00"
-          memory: 512M
-    stop_grace_period: 15s
+          cpus: "${LINTER_CPU_LIMIT:-0.25}"
+          memory: "${LINTER_MEM_LIMIT:-128M}"
+    # Tâche ponctuelle : pas de redémarrage automatique
+    restart: "no"
+
+  # ----------------------------------------------------------------------------
+  # CI - TESTS : pytest sur l'API Flask, s'exécute puis s'arrête
+  # ----------------------------------------------------------------------------
+  test-runner:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.test
+    image: warhammer/ci-tests:1.0
+    container_name: cloud_ci_tests
+    # Données de test isolées des volumes de production
+    environment:
+      - DATA_DIR=/tmp/data
+      - LOG_DIR=/tmp/logs
+    # Aucun réseau : les tests utilisent le client de test Flask en mémoire
+    network_mode: none
+    # Les tests ne tournent qu'une fois le linter terminé avec succès
+    depends_on:
+      linter:
+        condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          cpus: "${TESTS_CPU_LIMIT:-0.50}"
+          memory: "${TESTS_MEM_LIMIT:-256M}"
+    restart: "no"
+
+
+# Volumes nommés : persistance indépendante du cycle de vie des conteneurs
+volumes:
+  backend_data:
+    name: warhammer_backend_data
+    driver: local
+  backend_logs:
+    name: warhammer_backend_logs
+    driver: local
+  frontend_logs:
+    name: warhammer_frontend_logs
+    driver: local
+
+
+networks:
+  # DMZ : frontend <-> backend
+  frontend-net:
+    name: warhammer_frontend_net
+    driver: bridge
+
+  # Réseau interne sans passerelle vers l'extérieur : backend <-> game-server
+  backend-net:
+    name: warhammer_backend_net
+    driver: bridge
+    internal: true
